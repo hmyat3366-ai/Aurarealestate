@@ -65,6 +65,8 @@ export function AuthFlow({
   const [phone, setPhone] = useState("");
   const [registrationToken, setRegistrationToken] = useState("");
   const [devOtpCode, setDevOtpCode] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
+  const [emailNote, setEmailNote] = useState("");
 
   // Loading & error state
   const [isLoading, setIsLoading] = useState(false);
@@ -174,6 +176,8 @@ export function AuthFlow({
     if (res.devCode) {
       setDevOtpCode(res.devCode);
     }
+    setEmailSent(Boolean(res.emailSent));
+    setEmailNote(res.emailNote || "");
     setOtpCode(["", "", "", "", "", ""]);
     setOtpError("");
     setRemainingAttempts(null);
@@ -418,6 +422,8 @@ export function AuthFlow({
     if (res.devCode) {
       setDevOtpCode(res.devCode);
     }
+    setEmailSent(Boolean(res.emailSent));
+    setEmailNote(res.emailNote || "");
     setOtpCode(["", "", "", "", "", ""]);
     setExpirySeconds(300);
     setCooldownSeconds(res.cooldownSeconds || 60);
@@ -846,6 +852,26 @@ export function AuthFlow({
                   >
                     Autofill
                   </button>
+                </div>
+              )}
+
+              {emailSent && (
+                <div
+                  data-testid="email-sent-banner"
+                  className="p-3 bg-[#F0FDF4] border border-[#86EFAC] rounded-xs flex items-center gap-2 text-xs font-sans text-[#166534]"
+                >
+                  <span className="w-2 h-2 rounded-full bg-[#16A34A]" aria-hidden="true" />
+                  <span>Verification code delivered to your email inbox via Resend.</span>
+                </div>
+              )}
+
+              {emailNote && (
+                <div
+                  data-testid="email-note-banner"
+                  className="p-3 bg-[#FFFBEB] border border-[#FDE68A] rounded-xs text-[11px] font-sans text-[#92400E] leading-relaxed"
+                >
+                  <span className="font-semibold block mb-0.5">Resend Account Notice:</span>
+                  {emailNote}
                 </div>
               )}
 
