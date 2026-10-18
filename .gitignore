@@ -30,6 +30,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# agents & reference media
+# agents & root reference media
 .agents/
-*.mp4
+/Knight Frank*.mp4
+

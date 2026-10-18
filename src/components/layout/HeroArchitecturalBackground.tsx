@@ -71,6 +71,7 @@ export const HeroArchitecturalBackground: React.FC<HeroArchitecturalBackgroundPr
           playsInline
           aria-hidden="true"
           preload="auto"
+          poster="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80"
         />
       )}
 
