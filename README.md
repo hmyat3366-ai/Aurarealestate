@@ -1,78 +1,109 @@
-# Vane & Sterling — Prime Real Estate Agency Platform
+# AURA Real Estate — Prime & Super-Prime International Real Estate Agency
 
-A production-grade, editorial real estate agency web platform crafted for **Vane & Sterling**, an independent, partner-led real estate agency specializing in Prime Central London and European residential acquisitions and lettings.
+A luxury, editorial, and architectural real estate platform built with **Next.js 14 (App Router)**, **TypeScript**, **Tailwind CSS**, and **Vitest**.
 
----
-
-## 1. Business Model & Core Philosophy
-
-This platform is strictly **agency-owned and curated**:
-- **Buy (Acquisition):** Discover exclusively represented properties for sale across Mayfair, Kensington, Chelsea, Marylebone, Belgravia, and Richmond.
-- **Rent (Executive Lettings):** Prime residences to let with transparent monthly (£ PCM) and weekly (£ PW) calculations and verified availability dates.
-- **Sell with Us (Private Client Representation):** Property owners requesting valuation or representation must contact the agency private office directly. **Public users cannot self-publish property listings.**
-- **Discretion & Fiduciary Duty:** Regulated by RICS and registered with The Property Ombudsman.
+Combining the property discovery information architecture of Compass and Knight Frank with refined editorial typography and modern architectural art direction.
 
 ---
 
-## 2. Architectural & Research Documentation
+## 🏛️ Features
 
-Detailed strategic documentation is maintained in the [`docs/`](./docs) directory:
-- [`docs/REFERENCE_ANALYSIS.md`](./docs/REFERENCE_ANALYSIS.md): Comprehensive analysis of Knight Frank UK, Savills UK, Sotheby's International Realty, Rightmove, Zoopla, Zillow, and PropertyGuru.
-- [`docs/PRODUCT_UX_SPEC.md`](./docs/PRODUCT_UX_SPEC.md): Target user personas, business constraints, search filtering mechanics, and edge case handling.
-- [`docs/SITEMAP_AND_FLOWS.md`](./docs/SITEMAP_AND_FLOWS.md): Full information architecture, page hierarchy, and end-to-end user flow diagrams.
-- [`docs/DESIGN_SYSTEM.md`](./docs/DESIGN_SYSTEM.md): Design tokens, typography hierarchy, responsive breakpoints, and reusable UI component inventory.
+- **Cinematic Discovery & Navigation**:
+  - Knight Frank-inspired tabbed floating search console (Buy, Rent, Commercial, Valuation).
+  - Multi-attribute real estate filtering with URL query parameter persistence.
+  - Interactive property cards with independent image carousel navigation and favorite heart toggle.
+- **Exclusive Services & Advisory**:
+  - Dedicated advisory pillars: Residential Sales, Lettings & Management, Private Office & Acquisitions, and Development Advisory.
+  - Direct inquiry workflows with realistic validation and email fallbacks.
+- **Market Intelligence & Research**:
+  - The Wealth Report & Research Insights publication engine with dedicated editorial articles.
+- **Passwordless Authentication & Security**:
+  - Email OTP passwordless authentication.
+  - Server-side verified sessions with HttpOnly cookies.
+  - Protected personal account dashboard (`/account`), Saved Properties (`/account/saved`), and Viewing Request History (`/account/viewings`).
+- **Design System & Typography**:
+  - Luxury editorial palette: Warm Alabaster (`#FBFBF9`), Obsidian Ink (`#121312`), Heritage Bronze (`#78542E`), Hairline Borders (`#E6E4DE`).
+  - Strict typographic hierarchy and WCAG 2.2 AA accessibility standards.
+- **Robust Quality Engineering**:
+  - Comprehensive automated test suites (41 test files, 400+ unit and integration tests).
 
 ---
 
-## 3. Technology Stack
+## 🛠️ Tech Stack
 
-- **Framework:** Next.js 15 (App Router, Static Site Generation for properties and locations)
-- **Language:** TypeScript 5.7 (Strict mode)
-- **Styling:** Tailwind CSS 3.4 (Custom design tokens, mineral palette, serif typography)
-- **Icons:** Lucide React
-- **Testing:** Vitest 3.0, Testing Library React, JSDOM
+- **Framework**: Next.js 14 (App Router, Server & Client Components)
+- **Language**: TypeScript (Strict Mode)
+- **Styling**: Tailwind CSS
+- **Testing**: Vitest, React Testing Library, jsdom
+- **Icons**: Lucide React / Custom SVG Monograms & Brand Marks
 
 ---
 
-## 4. Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js `v20.x` or higher
-- npm `v10.x` or higher
+
+- Node.js (v18.17+ or v20+)
+- npm or pnpm
 
 ### Installation
+
 ```bash
+# Clone repository
+git clone https://github.com/hmyat3366-ai/Aurarealestate.git
+cd Aurarealestate
+
+# Install dependencies
 npm install
 ```
 
-### Development Server
+### Running the Development Server
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Running Test Suite
-```bash
-npm run test
-```
-Executes 31 automated tests across property filtering, sorting, pricing formatting, API endpoints, spam honeypots, and component rendering.
+---
 
-### Production Build
+## 🧪 Testing & Verification
+
+Run the comprehensive test suite and verify the build:
+
 ```bash
-npm run build
-npm start
+# Run unit & integration tests
+npm test
+
+# Run full project verification (TypeScript, Lint, Tests, Production Build)
+npm run verify
 ```
 
 ---
 
-## 5. Environment Variables & Central Configuration
+## 📁 Project Structure
 
-Centralized agency configuration is located in [`config/agency.ts`](./config/agency.ts). Optional environment variables:
+```
+├── data/                    # Seed and persistent mock datasets
+├── public/                  # Static assets and brand logos
+├── src/
+│   ├── app/                 # Next.js App Router pages and API routes
+│   │   ├── (auth)/          # Authentication flows (/auth, /login, /signup)
+│   │   ├── account/         # Protected account dashboard and history
+│   │   ├── buy/             # For sale property discovery
+│   │   ├── rent/            # Lettings & rental property discovery
+│   │   ├── services/        # Services & advisory pages
+│   │   ├── insights/        # The Wealth Report editorial articles
+│   │   └── properties/[id]/ # Property detail pages
+│   ├── components/          # Reusable UI & layout components
+│   ├── context/             # Auth and Favorites React contexts
+│   ├── data/                # Property listings and metadata
+│   └── lib/                 # Utility functions and auth helpers
+└── tests/                   # Vitest unit and integration test suites
+```
 
-| Variable | Description | Default |
-| :--- | :--- | :--- |
-| `NEXT_PUBLIC_AGENCY_EMAIL` | Default central agency email | `privateoffice@vaneandsterling.com` |
-| `RESEND_API_KEY` | Optional live transactional email API key | *(Unset — uses honest fallback)* |
-| `SMTP_HOST` | Optional SMTP server hostname | *(Unset — uses honest fallback)* |
+---
 
-*Note: In accordance with our honest handling policy, when no live transactional mail provider is configured, forms provide explicit acknowledgment and direct pre-formatted `mailto:` fallbacks so client data is never silently dropped.*
+## 📜 License
+
+Private proprietary project for AURA Real Estate. All rights reserved.

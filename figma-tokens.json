@@ -1,0 +1,101 @@
+{
+  "$schema": "https://tokens.studio/schema",
+  "version": "1.0.0",
+  "name": "AURA Real Estate Luxury Design System",
+  "color": {
+    "canvas": {
+      "default": { "value": "#FBFBF9", "type": "color", "description": "Warm Alabaster base canvas" },
+      "secondary": { "value": "#F3F1EC", "type": "color", "description": "Ivory Sand for filter bars and containers" },
+      "card": { "value": "#FFFFFF", "type": "color", "description": "Pure White for property cards and dialogs" },
+      "dark": { "value": "#121312", "type": "color", "description": "Obsidian dark for inverted sections and hero accents" },
+      "dark-elevated": { "value": "#1C1E1C", "type": "color", "description": "Dark elevated surfaces" }
+    },
+    "ink": {
+      "primary": { "value": "#121312", "type": "color", "description": "Obsidian primary text (17.97:1 contrast AAA)" },
+      "secondary": { "value": "#4A4C48", "type": "color", "description": "Graphite body copy (8.38:1 contrast AAA)" },
+      "muted": { "value": "#63655E", "type": "color", "description": "Mineral captions and metadata (5.70:1 contrast AA)" },
+      "inverse": { "value": "#FBFBF9", "type": "color", "description": "Alabaster text on obsidian surfaces" }
+    },
+    "hairline": {
+      "subtle": { "value": "#E6E4DE", "type": "color", "description": "1px architectural grid lines and dividers" },
+      "medium": { "value": "#D5D1C7", "type": "color", "description": "Structural borders and card outlines" },
+      "interactive": { "value": "#8E8A80", "type": "color", "description": "Form input boundaries and hover states" }
+    },
+    "bronze": {
+      "default": { "value": "#78542E", "type": "color", "description": "Heritage Bronze luxury accent (6.53:1 contrast AA)" },
+      "hover": { "value": "#614324", "type": "color", "description": "Deep bronze interactive hover state" },
+      "light": { "value": "#F4EDE2", "type": "color", "description": "Champagne badge background tint" },
+      "champagne": { "value": "#C5A880", "type": "color", "description": "Brand champagne gold accent" },
+      "muted": { "value": "#9E8260", "type": "color", "description": "Brand muted architectural bronze" }
+    },
+    "badge": {
+      "sale-bg": { "value": "#EEF2EE", "type": "color" },
+      "sale-text": { "value": "#23362A", "type": "color" },
+      "rent-bg": { "value": "#EAF0F6", "type": "color" },
+      "rent-text": { "value": "#192C3D", "type": "color" },
+      "exclusive-bg": { "value": "#F4EDE2", "type": "color" },
+      "exclusive-text": { "value": "#78542E", "type": "color" }
+    }
+  },
+  "fontFamilies": {
+    "serif": { "value": "Playfair Display, Cormorant Garamond, Didot, Bodoni MT, Georgia, serif", "type": "fontFamilies" },
+    "sans": { "value": "Montserrat, Plus Jakarta Sans, Inter, sans-serif", "type": "fontFamilies" },
+    "mono": { "value": "Space Mono, SFMono-Regular, monospace", "type": "fontFamilies" }
+  },
+  "fontSize": {
+    "hero-h1": { "value": "clamp(34px, 1.35rem + 2.95vw, 64px)", "type": "fontSizes", "description": "Hero H1: 34px at 360px to 64px at 1440px" },
+    "page-h1": { "value": "clamp(32px, 1.45rem + 1.85vw, 52px)", "type": "fontSizes", "description": "Standard Page H1: 32px to 52px" },
+    "section-h2": { "value": "clamp(26px, 1.25rem + 1.4vw, 42px)", "type": "fontSizes", "description": "Section H2: 26px to 42px" },
+    "section-h3": { "value": "clamp(20px, 1.05rem + 0.75vw, 28px)", "type": "fontSizes", "description": "Section H3: 20px to 28px" },
+    "card-title": { "value": "clamp(16px, 0.9rem + 0.35vw, 20px)", "type": "fontSizes", "description": "Property Card Title: 16px to 20px" },
+    "property-price": { "value": "clamp(17px, 0.95rem + 0.5vw, 24px)", "type": "fontSizes", "description": "Property Price: 17px to 24px" },
+    "body-large": { "value": "clamp(16px, 0.95rem + 0.2vw, 18px)", "type": "fontSizes", "description": "Lead body text: 16px to 18px" },
+    "body-regular": { "value": "16px", "type": "fontSizes", "description": "Standard readable body copy" },
+    "body-small": { "value": "14px", "type": "fontSizes", "description": "Secondary copy and specs" },
+    "caption": { "value": "13px", "type": "fontSizes", "description": "Property metadata and badges" },
+    "eyebrow": { "value": "12px", "type": "fontSizes", "description": "Section subheadings and tags" },
+    "nav-desktop": { "value": "13px", "type": "fontSizes", "description": "Desktop navigation links" },
+    "nav-mobile": { "value": "16px", "type": "fontSizes", "description": "Mobile drawer navigation links" },
+    "button": { "value": "13px", "type": "fontSizes", "description": "Interactive button labels" },
+    "form-label": { "value": "13px", "type": "fontSizes", "description": "Form input field labels" },
+    "form-input": { "value": "16px", "type": "fontSizes", "description": "16px minimum input text (prevents iOS auto-zoom)" },
+    "helper": { "value": "12px", "type": "fontSizes", "description": "Form validation and hints" }
+  },
+  "letterSpacing": {
+    "tight-monumental": { "value": "-0.04em", "type": "letterSpacing" },
+    "tight-editorial": { "value": "-0.025em", "type": "letterSpacing" },
+    "tight-heading": { "value": "-0.02em", "type": "letterSpacing" },
+    "normal": { "value": "0em", "type": "letterSpacing" },
+    "tracked-caps": { "value": "0.08em", "type": "letterSpacing" },
+    "tracked-button": { "value": "0.10em", "type": "letterSpacing" },
+    "tracked-eyebrow": { "value": "0.14em", "type": "letterSpacing" },
+    "tracked-technical": { "value": "0.15em", "type": "letterSpacing" },
+    "tracked-extreme": { "value": "0.22em", "type": "letterSpacing" },
+    "descriptor": { "value": "0.28em", "type": "letterSpacing" },
+    "wordmark": { "value": "0.35em", "type": "letterSpacing" }
+  },
+  "borderRadius": {
+    "none": { "value": "0px", "type": "borderRadius" },
+    "xs": { "value": "2px", "type": "borderRadius", "description": "Signature architectural sharp corner" },
+    "sm": { "value": "4px", "type": "borderRadius" },
+    "full": { "value": "9999px", "type": "borderRadius" }
+  },
+  "boxShadow": {
+    "ambient-xs": {
+      "value": { "x": 0, "y": 1, "blur": 2, "spread": 0, "color": "rgba(18, 19, 18, 0.04)" },
+      "type": "boxShadow"
+    },
+    "ambient-sm": {
+      "value": { "x": 0, "y": 2, "blur": 8, "spread": 0, "color": "rgba(18, 19, 18, 0.06)" },
+      "type": "boxShadow"
+    },
+    "ambient-md": {
+      "value": { "x": 0, "y": 6, "blur": 20, "spread": -2, "color": "rgba(18, 19, 18, 0.08)" },
+      "type": "boxShadow"
+    },
+    "ambient-lg": {
+      "value": { "x": 0, "y": 12, "blur": 32, "spread": -4, "color": "rgba(18, 19, 18, 0.12)" },
+      "type": "boxShadow"
+    }
+  }
+}

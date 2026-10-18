@@ -1,0 +1,412 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Architectural Color Tokens */
+  --color-canvas: #FBFBF9;
+  --color-canvas-secondary: #F3F1EC;
+  --color-canvas-card: #FFFFFF;
+  --color-obsidian: #121312;
+  --color-obsidian-hover: #282A27;
+  --color-graphite: #4A4C48;
+  --color-mineral: #63655E;
+  --color-bronze: #78542E;
+  --color-bronze-light: #F4EDE2;
+
+  /* Hairlines and Structural Dividers */
+  --border-hairline: #E6E3DC;
+  --border-medium: #D5D1C7;
+  --border-interactive: #8E8A80;
+
+  /* Tripartite Typographic System & Fallbacks */
+  --font-serif: "Playfair Display", "Cormorant Garamond", "Didot", "Bodoni MT", "Cinzel", Georgia, serif;
+  --font-sans: "Montserrat", "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "Space Mono", "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Centralized Responsive Typography Scale (CSS Fluid Clamp Tokens) */
+  --text-hero: clamp(2.125rem, 1.35rem + 2.95vw, 4rem);
+  --text-page-title: clamp(2rem, 1.45rem + 1.85vw, 3.25rem);
+  --text-section-title: clamp(1.625rem, 1.25rem + 1.4vw, 2.625rem);
+  --text-section-h3: clamp(1.25rem, 1.05rem + 0.75vw, 1.75rem);
+  --text-card-title: clamp(1rem, 0.9rem + 0.35vw, 1.25rem);
+  --text-property-price: clamp(1.0625rem, 0.95rem + 0.5vw, 1.5rem);
+  --text-body-large: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --text-body-regular: 1rem;
+  --text-body-small: 0.875rem;
+  --text-caption: 0.8125rem;
+  --text-eyebrow: 0.75rem;
+  --text-nav: 0.8125rem;
+  --text-button: 0.8125rem;
+  --text-form-label: 0.8125rem;
+  --text-form-input: 1rem;
+  --text-helper: 0.75rem;
+
+  /* Line Heights */
+  --leading-hero: 1.05;
+  --leading-page-title: 1.15;
+  --leading-section-title: 1.20;
+  --leading-section-h3: 1.30;
+  --leading-card-title: 1.35;
+  --leading-property-price: 1.25;
+  --leading-body-large: 1.65;
+  --leading-body-regular: 1.60;
+  --leading-body-small: 1.50;
+  --leading-caption: 1.40;
+  --leading-eyebrow: 1.20;
+  --leading-nav: 1.30;
+  --leading-button: 1.30;
+  --leading-form: 1.35;
+
+  /* Letter Spacing (Tracking) */
+  --tracking-hero: -0.035em;
+  --tracking-page-title: -0.025em;
+  --tracking-section-title: -0.02em;
+  --tracking-section-h3: -0.015em;
+  --tracking-card-title: -0.01em;
+  --tracking-property-price: -0.015em;
+  --tracking-body-large: -0.005em;
+  --tracking-body-regular: 0em;
+  --tracking-body-small: 0.005em;
+  --tracking-caption: 0.02em;
+  --tracking-eyebrow: 0.14em;
+  --tracking-nav: 0.08em;
+  --tracking-button: 0.10em;
+  --tracking-form-label: 0.04em;
+  --tracking-display-wordmark: 0.35em;
+  --tracking-descriptor: 0.28em;
+
+  /* Text Reading Widths */
+  --max-width-prose: 65ch;
+  --max-width-lead: 60ch;
+  --max-width-heading: 26ch;
+
+  /* Hero Architectural Ambient Motion & Palette Tokens */
+  --hero-bg-ivory: #F3F1EC;
+  --hero-bg-alabaster: #FBFBF9;
+  --hero-ambient-duration-1: 22s;
+  --hero-ambient-duration-2: 28s;
+  --hero-ambient-duration-3: 18s;
+  --hero-grid-duration: 24s;
+  --hero-ambient-champagne: rgba(244, 237, 226, 0.75);
+  --hero-ambient-beige: rgba(234, 228, 217, 0.65);
+  --hero-ambient-bronze: rgba(213, 196, 177, 0.35);
+  --hero-ambient-warm: rgba(248, 245, 240, 0.9);
+  --hero-ambient-opacity: 0.7;
+  --hero-grid-opacity: 0.18;
+  --hero-grid-stroke: #78542E;
+  --hero-grid-accent: #121312;
+}
+
+/* Base HTML & Canvas Resets */
+html {
+  background-color: var(--color-canvas);
+  color: var(--color-obsidian);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Editorial Text Selection */
+::selection {
+  background-color: #121312;
+  color: #FBFBF9;
+}
+
+/* WCAG 2.2 AA Focus Visible Indicator (17.97:1 Contrast on Alabaster) */
+:focus-visible {
+  outline: 2px solid #121312;
+  outline-offset: 2px;
+}
+
+/* Minimalist Architectural Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F3F1EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D5D1C7;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8E8A80;
+}
+
+/* Utility Classes for Editorial Art Direction */
+@layer utilities {
+  /* Lusion Micro-Technical Tag Bracket */
+  .technical-bracket::before {
+    content: "[";
+    color: var(--color-mineral);
+    margin-right: 0.25rem;
+  }
+  .technical-bracket::after {
+    content: "]";
+    color: var(--color-mineral);
+    margin-left: 0.25rem;
+  }
+
+  /* Zero-CLS Aspect Ratio Containers */
+  .editorial-aspect-hero {
+    aspect-ratio: 16 / 9;
+  }
+  .editorial-aspect-card {
+    aspect-ratio: 4 / 3;
+  }
+  .editorial-aspect-portrait {
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Shimmer Skeleton Gradient */
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      #F3F1EC 0%,
+      #EAE6DE 50%,
+      #F3F1EC 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s infinite linear;
+  }
+
+  /* Centralized Semantic Typography Classes */
+  .type-hero {
+    font-family: var(--font-serif);
+    font-size: var(--text-hero);
+    line-height: var(--leading-hero);
+    letter-spacing: var(--tracking-hero);
+    font-weight: 400;
+  }
+  .type-page-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-page-title);
+    line-height: var(--leading-page-title);
+    letter-spacing: var(--tracking-page-title);
+    font-weight: 400;
+  }
+  .type-section-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-section-title);
+    line-height: var(--leading-section-title);
+    letter-spacing: var(--tracking-section-title);
+    font-weight: 400;
+  }
+  .type-section-h3 {
+    font-family: var(--font-serif);
+    font-size: var(--text-section-h3);
+    line-height: var(--leading-section-h3);
+    letter-spacing: var(--tracking-section-h3);
+    font-weight: 500;
+  }
+  .type-card-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-card-title);
+    line-height: var(--leading-card-title);
+    letter-spacing: var(--tracking-card-title);
+    font-weight: 400;
+  }
+  .type-property-price {
+    font-family: var(--font-serif);
+    font-size: var(--text-property-price);
+    line-height: var(--leading-property-price);
+    letter-spacing: var(--tracking-property-price);
+    font-weight: 500;
+  }
+  .type-body-large {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-large);
+    line-height: var(--leading-body-large);
+    letter-spacing: var(--tracking-body-large);
+    max-width: var(--max-width-lead);
+  }
+  .type-body-regular {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-regular);
+    line-height: var(--leading-body-regular);
+    letter-spacing: var(--tracking-body-regular);
+    max-width: var(--max-width-prose);
+  }
+  .type-body-small {
+    font-family: var(--font-sans);
+    font-size: var(--text-body-small);
+    line-height: var(--leading-body-small);
+    letter-spacing: var(--tracking-body-small);
+  }
+  .type-caption {
+    font-family: var(--font-sans);
+    font-size: var(--text-caption);
+    line-height: var(--leading-caption);
+    letter-spacing: var(--tracking-caption);
+  }
+  .type-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--text-eyebrow);
+    line-height: var(--leading-eyebrow);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .type-nav {
+    font-family: var(--font-sans);
+    font-size: var(--text-nav);
+    line-height: var(--leading-nav);
+    letter-spacing: var(--tracking-nav);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .type-button {
+    font-family: var(--font-sans);
+    font-size: var(--text-button);
+    line-height: var(--leading-button);
+    letter-spacing: var(--tracking-button);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .type-form-label {
+    font-family: var(--font-sans);
+    font-size: var(--text-form-label);
+    line-height: var(--leading-form);
+    letter-spacing: var(--tracking-form-label);
+    font-weight: 500;
+  }
+  .type-form-input {
+    font-family: var(--font-sans);
+    font-size: var(--text-form-input);
+    line-height: 1.5;
+  }
+  .type-helper {
+    font-family: var(--font-sans);
+    font-size: var(--text-helper);
+    line-height: 1.4;
+  }
+}
+
+/* =========================================================================
+   Hero Architectural Ambient Motion (Hardware-accelerated transform & opacity)
+   ========================================================================= */
+@keyframes heroDrift1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.65;
+  }
+  33% {
+    transform: translate3d(5%, -4%, 0) scale(1.08);
+    opacity: 0.85;
+  }
+  66% {
+    transform: translate3d(-4%, 4%, 0) scale(0.96);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.65;
+  }
+}
+
+@keyframes heroDrift2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  40% {
+    transform: translate3d(-6%, 5%, 0) scale(1.1);
+    opacity: 0.75;
+  }
+  75% {
+    transform: translate3d(4%, -5%, 0) scale(0.94);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes heroDrift3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(6%, 6%, 0) scale(1.05);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.95);
+    opacity: 0.45;
+  }
+}
+
+@keyframes heroGridDrift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-8px, 6px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.hero-ambient-drift-1 {
+  animation: heroDrift1 var(--hero-ambient-duration-1, 22s) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.hero-ambient-drift-2 {
+  animation: heroDrift2 var(--hero-ambient-duration-2, 28s) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.hero-ambient-drift-3 {
+  animation: heroDrift3 var(--hero-ambient-duration-3, 18s) cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.hero-grid-motion {
+  animation: heroGridDrift var(--hero-grid-duration, 24s) ease-in-out infinite;
+  will-change: transform;
+}
+
+.hero-bg-base {
+  background: linear-gradient(180deg, var(--hero-bg-ivory, #F3F1EC) 0%, var(--hero-bg-alabaster, #FBFBF9) 60%, var(--hero-bg-alabaster, #FBFBF9) 100%);
+}
+
+.hero-bg-overlay {
+  background-image: radial-gradient(circle at 50% 40%, rgba(18, 19, 18, 0.45) 0%, rgba(18, 19, 18, 0.75) 60%, rgba(10, 11, 10, 0.95) 100%);
+}
+
+.hero-bg-video {
+  will-change: opacity;
+}
+
+/* Halts all continuous motion when reduced motion is preferred */
+@media (prefers-reduced-motion: reduce) {
+  .hero-ambient-drift-1,
+  .hero-ambient-drift-2,
+  .hero-ambient-drift-3,
+  .hero-grid-motion {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+  .hero-bg-video {
+    opacity: 0.45 !important;
+  }
+}
+
