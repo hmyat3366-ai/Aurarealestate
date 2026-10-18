@@ -734,6 +734,40 @@ describe("Component: Passwordless Email OTP & Account System", () => {
         );
       });
     });
+
+    it("renders dev code banner in non-production mode and autofills the OTP inputs on click", async () => {
+      vi.spyOn(global, "fetch").mockImplementation(async (url: any) => {
+        if (typeof url === "string" && url.includes("/api/auth/otp/send")) {
+          return {
+            ok: true,
+            json: async () => ({
+              success: true,
+              message: "Code dispatched",
+              cooldownSeconds: 60,
+              devCode: "133356",
+            }),
+          } as Response;
+        }
+        return { ok: true, json: async () => ({ authenticated: false, user: null }) } as Response;
+      });
+
+      renderWithAuth(<AuthFlow defaultEmail="devclient@example.com" />);
+      fireEvent.click(screen.getByRole("button", { name: /Continue with Email/i }));
+
+      const banner = await screen.findByTestId("dev-otp-banner");
+      expect(banner).toBeInTheDocument();
+      expect(screen.getByText("133356")).toBeInTheDocument();
+
+      const autofillBtn = screen.getByRole("button", { name: /Autofill/i });
+      fireEvent.click(autofillBtn);
+
+      expect(screen.getByLabelText(/Digit 1 of verification code/i)).toHaveValue("1");
+      expect(screen.getByLabelText(/Digit 2 of verification code/i)).toHaveValue("3");
+      expect(screen.getByLabelText(/Digit 3 of verification code/i)).toHaveValue("3");
+      expect(screen.getByLabelText(/Digit 4 of verification code/i)).toHaveValue("3");
+      expect(screen.getByLabelText(/Digit 5 of verification code/i)).toHaveValue("5");
+      expect(screen.getByLabelText(/Digit 6 of verification code/i)).toHaveValue("6");
+    });
   });
 });
 

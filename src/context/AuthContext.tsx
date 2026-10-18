@@ -9,6 +9,7 @@ export interface AuthContextType extends AuthState {
     error?: string;
     message?: string;
     cooldownSeconds?: number;
+    devCode?: string;
   }>;
   verifyOtp: (
     email: string,
@@ -94,6 +95,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         success: true,
         message: data.message,
         cooldownSeconds: data.cooldownSeconds || 60,
+        devCode:
+          data?.devCode ||
+          (typeof res.headers?.get === "function" ? res.headers.get("X-Aura-Test-Code") : undefined) ||
+          undefined,
       };
     } catch {
       return {

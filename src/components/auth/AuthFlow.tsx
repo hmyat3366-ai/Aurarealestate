@@ -64,6 +64,7 @@ export function AuthFlow({
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [registrationToken, setRegistrationToken] = useState("");
+  const [devOtpCode, setDevOtpCode] = useState("");
 
   // Loading & error state
   const [isLoading, setIsLoading] = useState(false);
@@ -170,6 +171,9 @@ export function AuthFlow({
     }
 
     // Anti-enumeration: transition to OTP screen
+    if (res.devCode) {
+      setDevOtpCode(res.devCode);
+    }
     setOtpCode(["", "", "", "", "", ""]);
     setOtpError("");
     setRemainingAttempts(null);
@@ -411,6 +415,9 @@ export function AuthFlow({
       return;
     }
 
+    if (res.devCode) {
+      setDevOtpCode(res.devCode);
+    }
     setOtpCode(["", "", "", "", "", ""]);
     setExpirySeconds(300);
     setCooldownSeconds(res.cooldownSeconds || 60);
@@ -811,6 +818,36 @@ export function AuthFlow({
                   Change
                 </button>
               </div>
+
+              {/* Dev Mode Verification Code Banner (Local Testing) */}
+              {devOtpCode && (
+                <div
+                  data-testid="dev-otp-banner"
+                  className="p-3 bg-[#FBFBF9] border border-[#78542E]/30 rounded-xs flex items-center justify-between text-xs font-mono"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#78542E] animate-pulse" aria-hidden="true" />
+                    <span className="text-[#78542E] uppercase tracking-wider text-[11px] font-semibold">
+                      Dev Code:
+                    </span>
+                    <span className="text-[#121312] font-bold text-sm tracking-widest">
+                      {devOtpCode}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const digits = devOtpCode.slice(0, 6).split("");
+                      setOtpCode(digits);
+                      setOtpError("");
+                      otpInputRefs.current[5]?.focus();
+                    }}
+                    className="text-[11px] font-sans font-medium text-[#78542E] hover:text-[#121312] underline uppercase tracking-wider"
+                  >
+                    Autofill
+                  </button>
+                </div>
+              )}
 
               <div>
                 <div className="flex items-center justify-between mb-2">

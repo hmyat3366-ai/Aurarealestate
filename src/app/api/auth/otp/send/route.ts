@@ -41,12 +41,13 @@ export async function POST(req: NextRequest) {
       console.log(`[AURA OTP Dispatch] Email: ${trimmedEmail} | Code: ${result.code}`);
     }
 
-    // Anti-enumeration consistent response
+    // Anti-enumeration consistent response with dev code in non-production
     const response = NextResponse.json(
       {
         success: true,
         message: 'If your email is valid, a 6-digit verification code has been dispatched.',
         cooldownSeconds: 60,
+        ...(process.env.NODE_ENV !== 'production' && result.code ? { devCode: result.code } : {}),
       },
       { status: 200 }
     );
