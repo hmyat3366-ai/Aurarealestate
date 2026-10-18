@@ -7,6 +7,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { AuthDatabase } from '@/lib/server/db';
+import { sendOtpEmail } from '@/lib/server/email';
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -34,11 +35,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // In a live production environment with Resend / SMTP, we would dispatch the email here:
-    // await sendOtpEmail(trimmedEmail, result.code);
-    // In dev / test environments, log code:
+    // Dispatch real transactional email via Resend if API key is present
+    let emailSent = false;
+    let emailNote: string | undefined;
+    if (result.code && process.env.RESEND_API_KEY) {
+      const emailRes = await sendOtpEmail(trimmedEmail, result.code);
+      emailSent = emailRes.success;
+      if (emailRes.trialRestricted) {
+        emailNote =
+          'Resend free tier only delivers to account owner email (hmyat3366@gmail.com). Use the dev code on-screen or verify your domain.';
+      }
+    }
+
     if (process.env.NODE_ENV !== 'production') {
-      console.log(`[AURA OTP Dispatch] Email: ${trimmedEmail} | Code: ${result.code}`);
+      console.log(
+        `[AURA OTP Dispatch] Email: ${trimmedEmail} | Code: ${result.code} | Resend Delivered: ${emailSent}`
+      );
     }
 
     // Anti-enumeration consistent response with dev code in non-production
@@ -47,6 +59,8 @@ export async function POST(req: NextRequest) {
         success: true,
         message: 'If your email is valid, a 6-digit verification code has been dispatched.',
         cooldownSeconds: 60,
+        emailSent,
+        ...(emailNote ? { emailNote } : {}),
         ...(process.env.NODE_ENV !== 'production' && result.code ? { devCode: result.code } : {}),
       },
       { status: 200 }
